@@ -1,0 +1,31 @@
+@using System.Security.Principal
+@using Microsoft.AspNetCore.Authentication.AzureADB2C.UI
+@using Microsoft.Extensions.Options
+@using System.Security.Claims
+@inject IOptionsMonitor<AzureADB2COptions> AzureADB2COptions
+
+@{
+    var options = AzureADB2COptions.Get(AzureADB2CDefaults.AuthenticationScheme);
+}
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    <ul class="nav navbar-nav navbar-right">
+        @if (!string.IsNullOrEmpty(options.EditProfilePolicyId))
+        {
+            <li><a asp-area="AzureADB2C" asp-controller="Account" asp-action="EditProfile">Hello @User.FindFirst(ClaimTypes.GivenName).Value!</a></li>
+        }
+        else
+        {
+            <li class="navbar-text">Hello @User.FindFirst(ClaimTypes.GivenName).Value!</li>
+        }
+        <li><a asp-area="AzureADB2C" asp-controller="Account" asp-action="SignOut">Sign out</a></li>
+    </ul>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li><a asp-area="AzureADB2C" asp-controller="Account" asp-action="SignIn">Sign in / up</a></li>
+    </ul>
+}

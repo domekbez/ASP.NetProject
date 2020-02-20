@@ -1,0 +1,142 @@
+﻿@model IEnumerable<JobOffer>
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="row page-box">
+        <div class="col-sm-12">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-12 col-md-4 d-flex align-items-center py-2">
+                        <h3 class="font-weight-bold mb-0">
+                            Job Offer list
+                        </h3>
+                    </div>
+                    <div style="margin-top:50px" class="col-12 col-md-4 py-2">
+                        <div class="input-group search-input"
+                             style="border-radius: 20px">
+                            <input id="inputsearch"
+                                   name="search"
+                                   type="text"
+                                   class="form-control"
+                                   placeholder="Search.."
+                                   aria-label="Search by offer title"
+                                   aria-describedby="button-search">                            
+                        </div>
+                    </div>
+                    <div >
+                                <button hidden="hidden" id="buttonsearch"
+                                        
+                                </button>
+                            </div>
+                </div>
+                <table id="table" class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+
+                            <th scope="col">Job Title</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Created</th>
+                            <th style="width: 20px"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="body">
+                        @foreach (var offer in Model.OrderBy(o => o.Created))
+                        {
+                        <tr>
+                            <td>@Html.ActionLink(offer.Title, "Details", new { Id = offer.Id })</td>
+                            <td>@offer.Location</td>
+                            <td>@offer.Created</td>                           
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#buttonsearch").click(function () {
+                var eNameData = $("#inputsearch").val();
+                $.ajax({
+                    type: "GET",
+                    url: "@(Url.Action("JobOffer"))",
+                    data: { title: eNameData },
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+
+                        var obj = JSON.parse(response);
+                        var table = document.getElementById("table");
+
+                        var rows = table.rows;
+                        var i = rows.length;
+                        while (--i) {
+                            rows[i].parentNode.removeChild(rows[i]);
+
+                        }
+
+
+
+                        $.each(obj, function (i, item) {
+                            var row = table.insertRow(table.rows.length);
+
+                            var cell2 = row.insertCell(0);
+                            var cell3 = row.insertCell(1);
+                            var cell4 = row.insertCell(2);
+                            //var cell5 = row.insertCell(3);
+                            //var cell6 = row.insertCell(4);
+                            //var cell7 = row.insertCell(5);
+
+
+                            cell2.innerHTML = "";
+                            //cell3.innerHTML = item.CompanyId;
+                            cell3.innerHTML = item.Location;
+                            cell4.innerHTML = item.Created;
+                            //cell6.innerHTML = "";
+                            //cell7.innerHTML = "";
+
+
+                            var a = document.createElement('a');
+                            var linkText = document.createTextNode(item.Title);
+                            a.appendChild(linkText);
+                            a.href = "/JobOffer/Details/" + item.Id;
+                            cell2.appendChild(a);
+
+                            //var a2 = document.createElement('a');
+                            //var linkText = document.createTextNode("Edit");
+                            //a2.appendChild(linkText);
+                            //a2.href = "/JobOffer/Edit/" + item.Id;
+                            //cell6.appendChild(a2);
+
+                            //var a3 = document.createElement('a');
+                            //var linkText = document.createTextNode("Delete");
+                            //a3.appendChild(linkText);
+                            //a3.href = "/JobOffer/Delete/" + item.Id;
+                            //cell7.appendChild(a3);
+                        });
+
+                    },
+                    failure: function (response) {
+                        alert(response);
+                    }
+                })
+		})
+	})
+    </script>
+
+    <script>
+        document.getElementById("inputsearch")
+            .addEventListener("keyup", function (event) {
+                event.preventDefault();
+                // if (event.keyCode === 13) {
+                //  console.log("COS");
+                document.getElementById("buttonsearch").click();
+                //}
+            });
+    </script>
+
+
+</body>
+</html>

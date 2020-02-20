@@ -1,0 +1,46 @@
+﻿@model CVEditor.Models.User
+@{
+    ViewData["Title"] = "IndexUser";
+}
+
+
+    <body>
+        <form  style="font-size:25px" method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="uploadCVAsync">
+            <div class="form-group">
+                <div class="col-md-10">
+                    <p >Upload or update your CV:</p>
+                    
+                  <input type="file" name="files" accept=".pdf" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <button style="margin-top:10px" hidden="hidden" id="btn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Upload</button>
+                </div>
+            </div>
+            <br />
+            @if (@Model.CVUrl != null)
+            {
+                <div style="font-size:25px">
+                    Your CV:
+                    <br />
+                    <a href="@Model.CVUrl">CV</a>
+                </div>
+            }
+        </form>
+    </body>
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Success</h4>
+                </div>
+                <div class="modal-body">
+                    <p>CV was added succesfully.</p>
+                </div>
+            </div>
+        </div>
+    </div>

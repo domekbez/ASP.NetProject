@@ -1,0 +1,50 @@
+﻿@model IEnumerable<CVEditor.Models.JobApplication>
+
+@{
+    ViewData["Title"] = "IndexHR";
+}
+
+<h2>Job applications for your job offers</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OfferId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfferId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comment)
+            </td>
+            <td>
+                <a asp-action="AddComment" asp-route-id="@item.Id">Add comment</a> |
+                <a asp-action="Accept" asp-route-id="@item.Id">Accept</a> |
+                <a asp-action="Reject" asp-route-id="@item.Id">Reject</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<CVEditor.Models.JobApplication>
+
+@{
+    ViewData["Title"] = "IndexAdmin";
+}
+
+<h2>Job applications</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Offer id:
+            </th>
+            <th>
+                User id:
+            </th>
+            <th>
+                Application status:
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfferId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationStatus)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,37 @@
+﻿@model IEnumerable<CVEditor.Models.JobApplication>
+
+@{
+    ViewData["Title"] = "IndexUser";
+}
+
+<h2>Your job applications</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Offer id:
+            </th>
+            <th>
+                Application status:
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfferId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationStatus)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">Details of job offer</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

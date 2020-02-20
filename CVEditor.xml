@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CVEditor</name>
+    </assembly>
+    <members>
+        <member name="M:CVEditor.Controllers.JobOfferController.Index">
+            <summary>
+            Returns list of akk Job Offers
+            </summary>
+            <returns>View of list of all Job offers</returns>
+            <seealso cref="T:CVEditor.Models.JobOffer"/>
+        </member>
+        <member name="M:CVEditor.Controllers.JobOfferController.JobOffer(System.String)">
+            <summary>
+            Performs search for offers with given title.
+            </summary>
+            <param name="title">Title for search purposes</param>
+            <returns>Serialized to json format list of Job Offers</returns>
+            <remarks>On exception this method returns json object containing error message</remarks>
+            <seealso cref="T:CVEditor.Models.JobOffer"/>
+        </member>
+        <member name="M:CVEditor.Controllers.JobOfferController.Details(System.Int32)">
+            <summary>
+            Asynchronously returns view of job offer with given id
+            </summary>
+            <param name="id">given id</param>
+            <returns>view of job offer with given id</returns>
+            <seealso cref="T:CVEditor.Models.JobOffer"/>
+        </member>
+        <member name="M:CVEditor.Controllers.JobOfferController.Edit(System.Nullable{System.Int32})">
+            <summary>
+            First searches for job offer in database with the given id.<p/>
+            Then returns view of found offer.
+            </summary>
+            <param name="model">id of job offer</param>
+            <returns>Bad request if id was null, notfound if job offer with id wasn't present, view of found job offer on success</returns>
+            <remarks>Method finds job offer Asynchronously</remarks>
+            <seealso cref="T:CVEditor.Models.JobOffer"/>
+        </member>
+        <member name="M:CVEditor.Controllers.JobOfferController.Edit(CVEditor.Models.JobOffer)">
+            <summary>
+            First searches for job offer in database with the same id as the model passed as parameter.<p/>
+            Then replaces current data in database with the given model or creates it if job offer wasn't existing.
+            </summary>
+            <param name="model">new or edited model</param>
+            <returns>redirect to the details of new or edited model</returns>
+            <remarks>Method performs search and applies changes Asynchronously</remarks>
+            <seealso cref="T:CVEditor.Models.JobOffer"/>
+        </member>
+        <member name="M:CVEditor.Controllers.JobOfferController.Create">
+            <summary>
+            Creates new empty job offer with default values
+            </summary>
+            <returns>view of new job offer</returns>
+            <remarks>Method adds new job offer Asynchronously</remarks>
+            <seealso cref="T:CVEditor.Models.JobOffer"/>
+        </member>
+        <member name="M:CVEditor.Controllers.JobOfferController.Create(CVEditor.Models.JobOffer)">
+            <summary>
+            Adds new job offer to the database.
+            </summary>
+            <param name="model">new model</param>
+            <returns>redirect to the index page</returns>
+            <remarks>Method adds new job offer Asynchronously</remarks>
+            <seealso cref="T:CVEditor.Models.JobOffer"/>
+        </member>
+        <member name="M:CVEditor.Controllers.JobOfferController.Delete(System.Nullable{System.Int32})">
+            <summary>
+            Removes Asynchronously job offer with the given id from database
+            </summary>
+            <param name="id">given id of job offer</param>
+            <returns>Bad request if id was null, notfound if job offer with id wasn't present, redirect to the index page in case of success</returns>
+            <remarks>Method removes job offer Asynchronously</remarks>
+            <seealso cref="T:CVEditor.Models.JobOffer"/>
+        </member>
+        <member name="M:CVEditor.Controllers.JobOfferController.EditAjax(System.String,System.String,System.String,System.String,System.String,System.DateTime,System.Int32)">
+            <summary>
+            Method for ajax to edit job offer in form without reloading page.
+            </summary>
+            <param name="id">id of the offer</param>
+            <param name="title">title of the offer</param>
+            <param name="salaryfrom">minimum salary</param>
+            <param name="salaryto">maximum salary</param>
+            <param name="location">location of offer</param>
+            <param name="description">description of offer</param>
+            <param name="valid">expiration date of the offer passed as string with format acceptable by Date.Parse()</param>
+            <returns>json object containing information whatever edit was successful or not</returns>
+            <remarks>On exception this method returns json object containing error message</remarks>
+            <seealso cref="!:CV_Editor.Models.JobOffer"/>
+        </member>
+        <member name="M:CVEditor.Controllers.TestController.Index">
+            <summary>
+            Returns list of akk Job Offers
+            </summary>
+            <returns>View of list of all Job offers</returns>
+        </member>
+    </members>
+</doc>

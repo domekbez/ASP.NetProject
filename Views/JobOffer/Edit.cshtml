@@ -1,0 +1,233 @@
+﻿@model CVEditor.Models.JobOffer
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<button style="display:none" hidden="hidden" id="btn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+<button style="display:none" hidden="hidden" id="btn2" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2">Open Modal</button>
+<button style="display:none" hidden="hidden" id="btn3" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal3">Open Modal</button>
+<button style="display:none" hidden="hidden" id="btn4" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal4">Open Modal</button>
+<button style="display:none" hidden="hidden" id="btn5" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal5">Open Modal</button>
+<button style="display:none" hidden="hidden" id="btn6" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal6">Open Modal</button>
+
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Success</h4>
+            </div>
+            <div class="modal-body">
+                <p>Job Offer was edited successfully.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="myModal2" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Error</h4>
+            </div>
+            <div class="modal-body">
+                <p>Salary to must be greater than salaryFrom.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div id="myModal3" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Error</h4>
+            </div>
+            <div class="modal-body">
+                <p>Description must have at least 10 characters.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="myModal4" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Error</h4>
+            </div>
+            <div class="modal-body">
+                <p>Salary can't be negative.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="myModal5" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Error</h4>
+            </div>
+            <div class="modal-body">
+                <p>Salaries must be numbers.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="myModal6" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Error</h4>
+            </div>
+            <div class="modal-body">
+                <p>ValidUntil must be later than today's date.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<h2>Edit job offer</h2>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" id="inputid" />
+        <div class="form-group">
+            <label>Title:</label>
+            <input asp-for="Title" id="titleinput" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Salary from:</label>
+            <input asp-for="SalaryFrom" id="salaryfrominput" class="form-control" />
+            <span asp-validation-for="SalaryFrom" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Salary to:</label>
+            <input asp-for="SalaryTo" id="salarytoinput" class="form-control" />
+            <span asp-validation-for="SalaryTo" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Location:</label>
+            <input asp-for="Location" id="locationinput" class="form-control" />
+            <span asp-validation-for="Location" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Description:</label>
+            <input asp-for="Description" id="descriptioninput" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Valid until:</label>
+            <input type="date" asp-for="ValidUntil" id="validuntilinput" class="form-control" />
+            <span asp-validation-for="ValidUntil" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="button" value="Save" id="savebutton" class="btn btn-default" />
+        </div>
+
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <!-- jQuery -->
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <!-- BS JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script>
+            $(document).ready(function () {
+                $("#savebutton").click(function () {
+
+                    salfrom = $("#salaryfrominput").val(),
+                    t = $("#titleinput").val(),
+                    salto = $("#salarytoinput").val(),
+                    loc = $("#locationinput").val(),
+                    descr = $("#descriptioninput").val(),
+                    valid = $("#validuntilinput").val(),
+                    id=$("#inputid").val()
+
+
+                    $.ajax({
+                        type: "POST",
+                        url: "@(Url.Action("EditAjax"))",
+                        data: { salaryFrom: salfrom, salaryTo: salto, description: descr, title:t, location:loc , validUntil:valid, jobId:id },
+                        success: function (response) {                            
+                            if (response == "salaryfailure") {
+                                $("#btn2").click();
+                            }
+                            else if (response == "success") {
+                                $("#btn").click();
+
+
+                            }
+                            else if (response == "descriptionfailure") {
+                                $("#btn3").click();
+                            }
+                            else if (response == "negativesalaryfailure") {
+                                $("#btn4").click();
+                            }
+                            else if (response == "notdecimalfailure") {
+                                $("#btn5").click();
+                            }
+                            else if (response == "datefailure") {
+                                $("#btn6").click();
+                            }
+                        },
+                        failure: function (response) {
+                            console.log("NIE UDALO SIE");
+
+                            alert(response);
+                        }
+                    })
+            })
+        })
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
